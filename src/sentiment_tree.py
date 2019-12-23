@@ -90,8 +90,3 @@ class SentimentTree(ParentedTree):
     def cast_labels_to_int(tree):
         for subtree in tree.subtrees():
             subtree.set_label(int(subtree.label()))
-
-
-
-if __name__ == '__main__':
-    trees = SentimentTree.load_trees(path='data/small.txt')
