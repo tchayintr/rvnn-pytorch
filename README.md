@@ -1,8 +1,9 @@
-# Recursive Neural Network Implementation using PyTorch
+# Vanilla Recursive Neural Network Implementation using PyTorch
 
 Original Paper: 
  - https://www.aclweb.org/anthology/D13-1170/
  - https://www.aclweb.org/anthology/D11-1014/
+
 Reference: 
  - https://github.com/aykutfirat/pyTorchTree
 
