@@ -35,6 +35,6 @@ class ArgumentLoader(object):
         parser.add_argument('--valid_data', type=Path, default=None, help='File path to validation data')
         parser.add_argument('--test_data', type=Path, default=None, help='File path to test data')
         parser.add_argument('--vocab_indices', type=Path, default=None, help='File path to vocab indices mapping')
-        parser.add_argument('--output_data', type=Path, default=None, help='File path to output file')
+        # parser.add_argument('--output_data', type=Path, default=None, help='File path to output file')
 
         return parser

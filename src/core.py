@@ -21,8 +21,8 @@ class Core(object):
 
         if not os.path.exists(constants.LOG_DIR):
             os.mkdir(constants.LOG_DIR)
-            if not os.path.exists(constants.MODEL_DIR):
-                os.mkdir(constants.MODEL_DIR)
+        if not os.path.exists(constants.MODEL_DIR):
+            os.mkdir(constants.MODEL_DIR)
 
 
         ###############################

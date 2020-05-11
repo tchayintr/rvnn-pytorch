@@ -1,4 +1,5 @@
 from datetime import datetime
+import pickle
 import progressbar
 import random
 import sys
@@ -28,7 +29,6 @@ class Trainer(object):
         self.best_all = None
         self.best_root = None
         self.current_epoch = None
-
 
         self.log('Start time: {}\n'.format(self.start_time))
         if not self.args.quiet:
@@ -106,6 +106,13 @@ class Trainer(object):
 
 
     def run(self):
+        # save hyperparameters
+        hparam_path = '{}/{}.hyp'.format(constants.MODEL_DIR, self.start_time)
+        with open(hparam_path, 'w') as f:
+            for key, val in self.hparams.items():
+                print('{}={}'.format(key, val), file=f)
+            self.log('Save hyperparameters: {}'.format(hparam_path))
+
         if self.args.cuda:
             self.log('# Running Model with CUDA')
             self.model = RecursiveNN(SentimentTree.vocab_size, embed_dim=self.args.embed_dim, num_class=self.args.num_class, use_cuda=True).cuda()
@@ -151,6 +158,14 @@ class Trainer(object):
             self.log('# validation: root accuracy: {}, (best: {})'.format(str(round(correct_root, 2)), str(round(self.best_root, 2))))
 
             random.shuffle(self.train)
+
+        # save model
+        if not self.args.quiet:
+            model_path = '{}/{}.model'.format(constants.MODEL_DIR, self.start_time)
+            with open(model_path, 'wb') as f:
+                pickle.dump(self.model, f)
+            self.log('Save the model: {}\n'.format(model_path))
+            self.report('[INFO] Save the model: {}\n'.format(model_path))
 
 
     def summary(self):
